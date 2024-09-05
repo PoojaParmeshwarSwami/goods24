@@ -1,0 +1,42 @@
+.mainContentDiv {
+    display: flex;
+    
+}
+.Right-sideDiv {
+    margin-top: 0px;
+    background-color: white;
+}.top-right {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 40px;
+    color: #3c3547;
+    
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid gray;
+    height: 100px;
+    width: 900px;
+}
+
+.top-right-content {
+    margin-left: 20px;
+    line-height: 8px;
+}
+.top-right-content {
+    margin-left: 20px;
+    line-height: 8px;
+}
+.dash-cart{
+    height: 100px;
+     margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+
+}
+.dash-cart p{
+    margin: 0px;
+}

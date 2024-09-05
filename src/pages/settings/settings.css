@@ -1,0 +1,19 @@
+.settingDiv{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 30px;
+
+}
+.settingDiv input{
+    height: 40px;
+    width: 300px;
+    border: none;
+
+}
+.settingDiv ::placeholder{
+    font-size:  large;
+   padding: 80px;
+
+}

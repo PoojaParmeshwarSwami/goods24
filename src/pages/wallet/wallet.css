@@ -1,0 +1,32 @@
+.profile-image {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    color: rgba(0, 0, 0, 0.527);
+  }
+  td {
+  
+    text-align: center;
+    margin: 20px;
+    padding: 18px;
+  }
+  
+  th {
+    background-color: #f5f5f5;
+  
+    padding: 13px;
+  }
+  tr:nth-child(even){
+      background-color: #f9f9f9;
+  
+  }
+  .customer-container{
+    width: 1000px;
+  }
+  button{
+    font-size: medium;
+    border: none;
+    height: 30px;
+    width: 85px;
+
+  }

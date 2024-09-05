@@ -1,0 +1,16 @@
+.productInfoDiv{
+    display: flex;
+    border: 1px solid rgb(248, 241, 241);
+    height: 500px;
+        width: 99%;
+}
+
+.ProductImage{
+  
+    border: 1px solid rgb(224, 214, 214);
+ height: 500px;
+ width: 750px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

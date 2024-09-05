@@ -1,0 +1,73 @@
+/* styles.css */
+* {
+    
+font-family: sans-serif;
+}
+ 
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    background-color: #f1f3f5;
+    /* Example background color */
+    overflow-y: auto;
+    /* Adds vertical scrolling if needed */
+}
+.root {
+    --theme-family1: "Outfit", sans-serif;
+    --theme-family2: 'Maharlika', sans-serif;
+    /* colors */
+    --bg-black: #000000;
+    --text-black: #000000;
+    --text-black-28: #282828;
+    --text-normal-gray: #626262;
+    --text-faint-gray: #454545;
+    --text-normal-faint-gray: #808080;
+    --text-violet: #551756;
+    --text-white: #ffffff;
+    --text-biscuit: #CAB273;
+    --text-chocolate: #4D3C10;
+    --text-error: #FF0000;
+    --text-success: #008000;
+    --text-primary: #0075FF;
+    --bg-white: #ffffff;
+    --bg-normal-white: #FAFAFA;
+    --bg-black-28: #282828;
+    --bg-violet: #1f041f;
+    --bg-biscuit: #CAB273;
+    --bg-dark-biscuit: #8B5C15;
+    --bg-normal-gray: #EFEBE180;
+    --bg-success: #008000;
+    --bg-error: #FF0000;
+    /* font size  */
+    --text-4xl: 24px;
+    --text-2xl: 22px;
+    --text-xl: 20px;
+    --text-lg: 18px;
+    --text-md: 16px;
+    --text-sm: 14px;
+    --text-sm1: 13px;
+    --text-xs: 12px;
+    --text-xs1: 11px;
+    --text-xs2: 10px;
+    /* padding */
+    --padding-x: 2rem;
+    --padding-y: 1rem;
+}

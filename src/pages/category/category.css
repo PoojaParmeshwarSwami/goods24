@@ -1,0 +1,20 @@
+
+.category-info{
+height: 200px;
+width: 200px;
+margin: 10px;
+border-radius: 5px;
+
+background-color: #f4f0e3;
+text-align: center;
+line-height: 1.3rem;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+}
+.category-container{
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+
