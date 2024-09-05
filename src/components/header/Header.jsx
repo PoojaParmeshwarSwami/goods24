@@ -1,7 +1,7 @@
 import { LiaShoppingCartSolid } from "react-icons/lia";
 import { CiSettings } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
+
 import { CgProfile } from "react-icons/cg";
 import { TbLogout2 } from "react-icons/tb";
 import { useEffect, useState } from "react";
@@ -14,47 +14,45 @@ const HeaderComponent = () => {
   const [openModal, setOpenModal] = useState(false);
   const [searchBox, setSearchBox] = useState(false);
   const [inputval, setInputVal] = useState("");
-  const [result,setResult] = useState("");
+ const[data,setData]= useState("");
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("info");
     navigate("/login");
   };
 
-  const finalData = {
-    search: "Veg",
+
+  const fetchdata = async (value) => {
+
+    try {
+        const finalData = {
+            search:value,
+          };
+        
+
+      const response = await axios.get(
+        "https://goods24api.yelmarpariwar.com/website/product/search/18.4509994/73.827328",
+        {
+          params: finalData,
+          auth: {
+            username: "admin",
+            password: "password",
+          },
+        }
+      );
+      if (response.data.status) {
+        setData(response.data.data);
+        console.log("Search data", response.data.data);
+      }
+    } catch (error) {
+      console.log("search error", error);
+    }
   };
 
-    const fetchdata = async (value) => {
-      try {
-        const response = await axios.get(
-          "https://goods24api.yelmarpariwar.com/website/product/search/{{18.4509994}}/{{73.827328}}",
-          {
-            params: finalData,
-            auth: {
-              username: "admin",
-              password: "password",
-            },
-          }
-        );
-        if (response.data.status) {
-          setData(response.data.data);
-          console.log("Header data", response.data.data);
-        }
-      } catch (error) {
-        console.log("header error", error);
-      }
-    };
-  
-
-
-  const handleChange =(value)=>{
+  const handleChange = (value) => {
     setInputVal(value);
     fetchdata(value);
-  }
-
-
-
+  };
 
   return (
     <>
@@ -82,13 +80,13 @@ const HeaderComponent = () => {
           onClick={() => {
             setSearchBox(!searchBox);
           }}
-          onChange={(e)=>{handleChange(e.target.value)}}
+          onChange={(e) => {
+            handleChange(e.target.value);
+          }}
         />
-        {searchBox && (
-          <div className="searchBoxDiv">
-            
-          </div>
-        )}
+        {searchBox && <div className="searchBoxDiv"> {
+            data.map
+            }</div>}
 
         <button className="search-button">Search</button>
 
