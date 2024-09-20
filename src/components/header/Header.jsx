@@ -1,17 +1,17 @@
-import { LiaShoppingCartSolid } from "react-icons/lia";
 import { CiSettings } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { TbLogout2 } from "react-icons/tb";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/src/assets/logo.png";
 import "/src/components/header/header.css";
 import axios from "axios";
+import { UserContext } from '../../context/UserContext';
 
 
 const HeaderComponent = () => {
-  const [searchBox, setSearchBox] = useState(false);
+    const {setProductInfo} =useContext(UserContext);
   const [inputval, setInputVal] = useState("");
   const [data, setData] = useState([]);
   const[openModal,setOpenModal]= useState(false)
@@ -26,8 +26,8 @@ const HeaderComponent = () => {
   const fetchdata = async (value) => {
     try {
       if (value.trim() === "") {
-        setData([]); // Clear results if input is empty
-        setSearchBox(false); // Hide search results if input is empty
+        setData([]); 
+      
         return;
       }
 
@@ -47,12 +47,12 @@ const HeaderComponent = () => {
       );
       if (response.data.status) {
         setData(response.data.data);
-        console.log("Search data", response.data.data);
-        setSearchBox(true); // Show search results if data is fetched
+       
+     
       }
     } catch (error) {
       console.log("search error", error);
-      setSearchBox(false); // Hide search results in case of error
+      
     }
   };
 
@@ -86,26 +86,27 @@ const HeaderComponent = () => {
           onChange={handleChange}
         />
         
-        {searchBox && (
-          <div className="search-results">
+        
+          <div className="search-results search-result-item" >
+
             {data.length > 0 ? (
               <>
-                {data.map((item) => (
-                  <div key={item.id}>
-                    <Link to={`/product/${item.id}`} className="search-result-item">
+            <Link to='/productInfo'>
+                {data.map((elem) => (
+                  <div key={elem.vendor_product_id}  onClick={()=>{setProductInfo(elem)}}>
+                
                   <div>
-                    <img src={item.product_image} alt="" style={{height:'30px',width:'30px',borderRadius:'50px'}} />
-                    {item.product_name}  {item.type}
+                    <img src={elem.product_image} alt="" style={{height:'30px',width:'30px',borderRadius:'50px'}} />
+                    {elem.product_name}  {elem.type}
                     </div>
-                    </Link>
+                   
                   </div>
                 ))}
+                </Link>
               </>
-            ) : (
-              <p>No results found</p>
-            )}
+            ) : ""}
           </div>
-        )}
+      
 
         <button className="search-button">Search</button>
 

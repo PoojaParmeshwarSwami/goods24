@@ -5,10 +5,21 @@ import { MdCurrencyRupee } from "react-icons/md";
 import { format, parseISO } from 'date-fns'; 
 
 const ProductInfo = () => {
-  const { productInfo } = useContext(UserContext);
-  const date =parseISO(productInfo.created_at);
-  const formattedDate = format(date, 'MMMM dd, yyyy HH:mm:ss');
-
+    const { productInfo } = useContext(UserContext);
+  
+    let formattedDate;
+    if (productInfo && productInfo.created_at) {
+      try {
+        const date = parseISO(productInfo.created_at);
+        formattedDate = format(date, 'MMMM dd, yyyy HH:mm:ss');
+      } catch (error) {
+        console.error("Failed to parse date:", error);
+        formattedDate = "Invalid date";
+      }
+    } else {
+      formattedDate = "Date not available";
+    }
+  
   return (
     <>
       <div className="productInfoDiv">
