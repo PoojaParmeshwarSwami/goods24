@@ -116,9 +116,9 @@
 }
 .search-results{
     /* height: 50px; */
-    margin-top: 70px;
-    margin-left: 270px;
-    width: 750px;
+    margin-top: 20px;
+    margin-left: 50px;
+    /* width: 750px; */
     font-size: larger;
     /* border: 1px solid; */
     position: absolute;
