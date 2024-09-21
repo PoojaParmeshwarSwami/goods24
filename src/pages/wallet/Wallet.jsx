@@ -11,41 +11,64 @@ const Wallet = () => {
   const [val, setVal] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState();
+  const [userId, setUserId] = useState("");
+
+  const fetchdata = async () => {
+    try {
+      const response = await axios.get(
+        "https://goods24api.yelmarpariwar.com/admin/user",
+        {
+          auth: {
+            username: "admin",
+            password: "password",
+          },
+        }
+      );
+      if (response.data.status) {
+        setData(response.data.data);
+      }
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await axios.get(
-          "https://goods24api.yelmarpariwar.com/admin/user",
-          {
-            auth: {
-              username: "admin",
-              password: "password",
-            },
-          }
-        );
-        if (response.data.status) {
-          setData(response.data.data);
-        }
-      } catch (error) {}
-    };
     fetchdata();
   }, []);
+
+  //   reload data
+  const handleReload = async () => {
+    await fetchdata();
+  };
 
   const handleInputeChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleRecharge = () => {
-    const numberValue = parseFloat(inputValue)
-    if(!isNaN(numberValue)){
-        setResult((prevResult)=>prevResult - numberValue);
-        setInputValue('');
-      
-    }else{
-        alert("enter valid number")
+  const handleRecharge = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("user_id", userId);
+      formData.append("amount", inputValue);
+      formData.append("payment_id", "asfdfs");
+      const response = await axios.post(
+        "https://goods24api.yelmarpariwar.com/admin/wallet/add-fund",
+        formData,
+        {
+          auth: {
+            username: "admin",
+            password: "password",
+          },
+        }
+      );
+      if (response.data.status) {
+        // setData(response.data.data);
+        setRecharge(!recharge);
+        handleReload();
+      }
+    } catch (error) {
+      console.log("error", error);
     }
   };
+  console.log(result);
 
   return (
     <>
@@ -78,6 +101,7 @@ const Wallet = () => {
                   onClick={() => {
                     setRecharge(!recharge);
                     setVal([item]);
+                    setUserId(item.id);
                   }}
                 >
                   Recharge
@@ -131,13 +155,13 @@ const Wallet = () => {
                     {elem.first_name} {elem.last_name}
                   </h1>
                   <h3>Balance:{elem.wallet}</h3>
-                 
+
                   <input
                     type="number"
                     style={{ height: "30px", width: "200px" }}
                     value={inputValue}
                     onChange={handleInputeChange}
-                    onClick={()=>setResult(elem.wallet)}
+                    onClick={() => setResult(elem.wallet)}
                   />
                   <br />
                   <button
@@ -148,7 +172,7 @@ const Wallet = () => {
                       backgroundColor: "#567dec",
                       color: "white",
                     }}
-                    onClick={handleRecharge} 
+                    onClick={handleRecharge}
                   >
                     Recharge Now
                   </button>
