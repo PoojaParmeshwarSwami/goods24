@@ -119,13 +119,12 @@
     margin-top: 20px;
     margin-left: 50px;
     /* width: 750px; */
-    font-size: larger;
+    font-size: large;
     /* border: 1px solid; */
     position: absolute;
   background-color:white;
   z-index: 99;
- 
-    
+ font-family: sans-serif;
 }
 .search-result-item{
     color:black;

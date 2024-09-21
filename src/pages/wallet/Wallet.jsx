@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
-
 const Wallet = () => {
   const [data, setData] = useState([]);
   const [recharge, setRecharge] = useState(false);
-  const [val,setVal]=useState([]);
+  const [val, setVal] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [result, setResult] = useState();
 
   useEffect(() => {
     const fetchdata = async () => {
@@ -30,6 +31,21 @@ const Wallet = () => {
     };
     fetchdata();
   }, []);
+
+  const handleInputeChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleRecharge = () => {
+    const numberValue = parseFloat(inputValue)
+    if(!isNaN(numberValue)){
+        setResult((prevResult)=>prevResult - numberValue);
+        setInputValue('');
+      
+    }else{
+        alert("enter valid number")
+    }
+  };
 
   return (
     <>
@@ -60,9 +76,8 @@ const Wallet = () => {
               <td>
                 <button
                   onClick={() => {
-                    setRecharge(!recharge)
+                    setRecharge(!recharge);
                     setVal([item]);
-                    
                   }}
                 >
                   Recharge
@@ -76,23 +91,69 @@ const Wallet = () => {
                 height: "300px",
                 width: "350px",
                 backgroundColor: "#f5f5f5",
-                marginTop: "-1000px",
-                marginLeft:'300px',
-                border:'1px solid gray',
-                borderRadius:'5px',
-                position:'fixed'
+                marginTop: "-550px",
+                marginLeft: "300px",
+                border: "1px solid gray",
+                borderRadius: "5px",
+                position: "fixed",
               }}
             >
-                <div style={{height:'30px',width:'30px',borderRadius:'50px',border:'0.5px solid',marginLeft:'330px',marginTop:'-10px',backgroundColor:'white'}}><RxCross2 style={{height:'30px',width:'30px',color:'gray'}} onClick={()=>{ setRecharge(!recharge)}} /></div>
-                {val.map((elem)=>(< div style={{fontFamily:'sans-serif',color:'gray',display:'flex',flexDirection:'column', alignItems:'center',justifyContent:'center'}}>
-                    <h1>{elem.first_name} {elem.last_name}</h1>
-                    <h3>Balance:{elem.wallet}</h3>
-                    <input type="number" style={{height:'30px',width:'200px'}} /> 
-                    <br/> 
-                    <button style={{height:'30px',width:'150px',borderRadius:'3px',backgroundColor:'#567dec',color:'white'}}>Recharge Now</button>
-                    </div>
-                ))}
-
+              <div
+                style={{
+                  height: "30px",
+                  width: "30px",
+                  borderRadius: "50px",
+                  border: "0.5px solid",
+                  marginLeft: "330px",
+                  marginTop: "-10px",
+                  backgroundColor: "white",
+                }}
+              >
+                <RxCross2
+                  style={{ height: "30px", width: "30px", color: "gray" }}
+                  onClick={() => {
+                    setRecharge(!recharge);
+                  }}
+                />
+              </div>
+              {val.map((elem) => (
+                <div
+                  style={{
+                    fontFamily: "sans-serif",
+                    color: "gray",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <h1>
+                    {elem.first_name} {elem.last_name}
+                  </h1>
+                  <h3>Balance:{elem.wallet}</h3>
+                 
+                  <input
+                    type="number"
+                    style={{ height: "30px", width: "200px" }}
+                    value={inputValue}
+                    onChange={handleInputeChange}
+                    onClick={()=>setResult(elem.wallet)}
+                  />
+                  <br />
+                  <button
+                    style={{
+                      height: "30px",
+                      width: "150px",
+                      borderRadius: "3px",
+                      backgroundColor: "#567dec",
+                      color: "white",
+                    }}
+                    onClick={handleRecharge} 
+                  >
+                    Recharge Now
+                  </button>
+                </div>
+              ))}
             </div>
           )}
         </tbody>

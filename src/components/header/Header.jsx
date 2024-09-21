@@ -17,8 +17,7 @@ const HeaderComponent = () => {
   const [showResults, setShowResults] = useState(false);
   
   const searchRef = useRef(null);
-  const modalRef = useRef(null);  // Create a ref for the modal
-
+  const modalRef = useRef(null);  
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -30,7 +29,7 @@ const HeaderComponent = () => {
     try {
       if (value.trim() === "") {
         setData([]);
-        setShowResults(false);
+        // setShowResults(false);
         return;
       }
 
@@ -63,16 +62,16 @@ const HeaderComponent = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      // Check if click is outside the modal and the search input
+    
       const isOutsideSearchBox = searchRef.current && !searchRef.current.contains(event.target);
       const isOutsideModal = modalRef.current && !modalRef.current.contains(event.target);
       
       if (isOutsideModal) {
-        setOpenModal(false); // Close modal when clicking outside
+        setOpenModal(false); 
       }
       
       if (isOutsideSearchBox) {
-        setShowResults(false); // Close search results if they are open
+        setShowResults(false);
       }
     };
   
@@ -80,8 +79,7 @@ const HeaderComponent = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [showResults]); // Add showResults to the dependency array
-  
+  }, []);                                  
 
   return (
     <>
@@ -147,7 +145,7 @@ const HeaderComponent = () => {
           />
         </Link>
         {openModal && (
-          <div ref={modalRef} className="logOutmodal"> {/* Attach ref to modal */}
+          <div ref={modalRef} className="logOutmodal">
             <Link to="/profile" className={"popup dropDown-div"} onClick={()=>{ setOpenModal(false); }}>
               <FaRegUser className="dropdown-icons" />
               Profile 
