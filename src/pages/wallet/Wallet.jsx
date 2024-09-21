@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../wallet/wallet.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
@@ -63,6 +62,7 @@ const Wallet = () => {
         // setData(response.data.data);
         setRecharge(!recharge);
         handleReload();
+        setInputValue();
       }
     } catch (error) {
       console.log("error", error);

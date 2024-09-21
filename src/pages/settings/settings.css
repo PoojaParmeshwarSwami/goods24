@@ -10,10 +10,16 @@ gap: 30px;
     height: 40px;
     width: 300px;
     border: none;
+    font-size: large;
+    font-family: sans-serif;
 
 }
 .settingDiv ::placeholder{
-    font-size:  large;
+    font-size:  larger;
    padding: 80px;
 
+}
+.settingDiv input:focus{
+  border-bottom: 1px solid #567dec;
+    outline: none;
 }

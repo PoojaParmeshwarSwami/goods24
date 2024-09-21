@@ -50,7 +50,7 @@ const App = () => {
           <Route path='subcategory' element={<SubCategory/>}/>
           <Route path = '/bestSeller' element={<BestSeller/>}/>
           <Route path = '/profile' element={<Profile/>}/>
-          <Route path="/settigs" element ={<Settings/>}/>
+          <Route path="/settings" element ={<Settings/>}/>
           <Route path="/wallet" element ={<Wallet/>}/>
          
           <Route path="/customer/customerInfo/total-order/:id" element={<TotalOrder />}/>
